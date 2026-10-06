@@ -384,6 +384,14 @@ html[data-quote="invalid"] .quote-banner-invalid { display: block; }
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 1.1rem;
+  color: #111;
+}
+
+.quote-form .form-title,
+.quote-form .form-note,
+.quote-form .form-legal,
+.quote-form label {
+  color: #111;
 }
 
 .form-title { font-size: 1.55rem; margin: 0; }
@@ -402,10 +410,22 @@ input, select, textarea {
   padding: 0.7rem 0.8rem;
   border-radius: 12px;
   border: 1px solid #c5d7e8;
-  background: var(--white);
-  color: var(--ink);
+  background: #fff;
+  color: #111;
+  -webkit-text-fill-color: #111;
   font-size: 16px;
 }
+
+.quote-form input::placeholder,
+.quote-form textarea::placeholder {
+  color: #111;
+  -webkit-text-fill-color: #111;
+  opacity: 1;
+}
+
+.quote-form option { color: #111; background: #fff; }
+
+.quote-form a { color: #0860b2; }
 
 textarea { min-height: 120px; resize: vertical; }
 
@@ -1013,7 +1033,7 @@ body.admin-bar .site-header { top: 32px; }
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center center;
   display: block;
   background: #020d18;
 }
@@ -1270,9 +1290,9 @@ body.admin-bar .site-header { top: 32px; }
   .story-card p { margin-bottom: 0.45rem; }
   .story-card blockquote { margin: 0.35rem 0; }
   .js:not(.reduce) .story-frame {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     height: auto;
-    min-height: 200px;
+    min-height: 0;
     max-height: none;
   }
   .js:not(.reduce) .story-frame:not(.is-on),
@@ -1281,21 +1301,28 @@ body.admin-bar .site-header { top: 32px; }
   }
   .js:not(.reduce) .story-frame img,
   .js:not(.reduce) .story-frame video {
-    inset: 0;
+    position: relative;
+    inset: auto;
+    display: block;
     width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    height: 280px;
+    height: min(42svh, 300px);
+    min-height: 220px;
+    max-height: none;
     aspect-ratio: auto;
     object-fit: cover;
-    object-position: center 42%;
+    object-position: center center;
+    transform: none;
+  }
+  .js:not(.reduce) .story-frame.is-on img,
+  .js:not(.reduce) .story-frame.is-on video {
     transform: none;
   }
   .js:not(.reduce) .story-card {
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     align-self: stretch;
     min-height: 0;
-    max-height: none;
+    max-height: 100%;
     overflow: auto;
     background: #06203a;
     line-height: 1.4;
@@ -1305,9 +1332,8 @@ body.admin-bar .site-header { top: 32px; }
   .js:not(.reduce) .story-card .story-sign { margin: 0.2rem 0 0; }
   .story-frame img,
   .story-frame video {
-    max-height: 68vw;
     object-fit: cover;
-    object-position: center 42%;
+    object-position: center center;
   }
   .story-more { display: none; }
   .story-watermark { font-size: 2.2rem; top: 0.35rem; }
