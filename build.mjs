@@ -62,9 +62,13 @@ fs.cpSync(path.join(root, "assets"), path.join(theme, "assets"), { recursive: tr
 const dist = path.join(root, "dist");
 fs.mkdirSync(dist, { recursive: true });
 const zipPath = path.join(dist, "als-kc-cleaning.zip");
-fs.rmSync(zipPath, { force: true });
-execFileSync("zip", ["-qr", zipPath, "als-kc-cleaning"], {
-  cwd: path.join(root, "wordpress-theme"),
-});
-
-console.log(`Built preview and theme. Zip: ${zipPath}`);
+// Render only publishes preview/. Skip the WordPress zip there so a missing zip tool cannot fail the static build.
+if (process.env.RENDER === "true") {
+  console.log("Built preview and theme. Zip skipped on Render.");
+} else {
+  fs.rmSync(zipPath, { force: true });
+  execFileSync("zip", ["-qr", zipPath, "als-kc-cleaning"], {
+    cwd: path.join(root, "wordpress-theme"),
+  });
+  console.log(`Built preview and theme. Zip: ${zipPath}`);
+}
