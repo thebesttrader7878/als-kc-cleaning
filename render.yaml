@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: als-kc-cleaning
+    runtime: static
+    buildCommand: node build.mjs
+    staticPublishPath: preview
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=86400
