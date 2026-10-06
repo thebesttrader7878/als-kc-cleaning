@@ -985,6 +985,8 @@ body.admin-bar .site-header { top: 32px; }
   margin: 0;
   border-radius: 28px;
   overflow: hidden;
+  overflow: clip;
+  contain: paint;
   background: #020d18;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 242, 3, 0.35);
@@ -1261,13 +1263,52 @@ body.admin-bar .site-header { top: 32px; }
 @media (max-width: 759px) {
   .js:not(.reduce) .story-pin { padding: 5.1rem 0 calc(4.6rem + env(safe-area-inset-bottom)); }
   .js:not(.reduce) .story-stage {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 0.56fr) minmax(0, 1.44fr);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
   }
   .story-card p { margin-bottom: 0.45rem; }
   .story-card blockquote { margin: 0.35rem 0; }
-  .js:not(.reduce) .story-frame { grid-column: 1; grid-row: 1; }
-  .js:not(.reduce) .story-card { grid-column: 1; grid-row: 2; align-self: stretch; }
+  .js:not(.reduce) .story-frame {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 200px;
+    max-height: none;
+  }
+  .js:not(.reduce) .story-frame:not(.is-on),
+  .js:not(.reduce) .story-card:not(.is-on) {
+    display: none;
+  }
+  .js:not(.reduce) .story-frame img,
+  .js:not(.reduce) .story-frame video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center 42%;
+    transform: none;
+  }
+  .js:not(.reduce) .story-card {
+    flex: 0 1 auto;
+    align-self: stretch;
+    min-height: 0;
+    max-height: none;
+    overflow: auto;
+    background: #06203a;
+    line-height: 1.4;
+  }
+  .js:not(.reduce) .story-card blockquote { margin: 0.25rem 0; }
+  .js:not(.reduce) .story-card blockquote p { margin: 0 0 0.15rem; }
+  .js:not(.reduce) .story-card .story-sign { margin: 0.2rem 0 0; }
+  .story-frame img,
+  .story-frame video {
+    max-height: 68vw;
+    object-fit: cover;
+    object-position: center 42%;
+  }
   .story-more { display: none; }
   .story-watermark { font-size: 2.2rem; top: 0.35rem; }
   .story-card { padding: 0.85rem 0.95rem; }

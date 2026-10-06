@@ -854,7 +854,7 @@ function staticHead(slug) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css?v=20261006">
 <script>!function(){var d=document.documentElement;d.classList.add("js");if(matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("reduce");var q=new URLSearchParams(location.search).get("quote");if(q==="sent"||q==="invalid")d.setAttribute("data-quote",q)}();</script>
 ${schema}
 </head>
