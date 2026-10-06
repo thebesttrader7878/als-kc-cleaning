@@ -818,12 +818,28 @@ body.admin-bar .site-header { top: 32px; }
 @media (min-width: 760px) {
   .callbar { display: none !important; }
   body { padding-bottom: 0; }
+  .logo-img { height: 58px; }
 }
 
 @media (max-width: 759px) {
+  .utility { display: none; }
   .btn-long { display: none; }
   .btn-short { display: inline; }
-  .logo-img { height: 46px; }
+  .site-header { background: #fff; }
+  .header-inner {
+    flex-wrap: nowrap;
+    min-height: 64px;
+    gap: 0.45rem;
+  }
+  .logo { min-height: 0; flex: 0 0 auto; }
+  .logo-img { height: 46px; width: auto; }
+  .header-tools { gap: 0.4rem; flex: 0 0 auto; }
+  .header-tools .btn-small,
+  .header-tools .nav-toggle {
+    min-height: 40px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.95rem;
+  }
   .hero-media { height: 132px; }
   .hero-actions { display: none; }
   .hero h1 { font-size: 1.85rem; }
@@ -853,7 +869,7 @@ body.admin-bar .site-header { top: 32px; }
   body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
   .header-phone { display: none; }
   .nav.is-open {
-    max-height: calc(100dvh - 8rem - 56px - env(safe-area-inset-bottom));
+    max-height: calc(100dvh - 4.5rem - 56px - env(safe-area-inset-bottom));
     overscroll-behavior: contain;
   }
   .trust-list { grid-template-columns: 1fr; }
@@ -912,7 +928,7 @@ body.admin-bar .site-header { top: 32px; }
   .submenu a:hover, .submenu a.is-active { background: var(--cream); color: var(--ink); }
 }
 
-.logo-img { height: 58px; width: auto; }
+.logo-img { width: auto; }
 
 .footer-logo-link { display: inline-block; margin-bottom: 0.7rem; }
 
